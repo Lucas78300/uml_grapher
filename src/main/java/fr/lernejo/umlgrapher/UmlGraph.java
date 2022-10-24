@@ -2,17 +2,25 @@ package fr.lernejo.umlgrapher;
 
 public class UmlGraph {
 
-    public UmlGraph(Class<?>...classes) {
+    private final Class<?>[] aClass;
+
+    public UmlGraph(Class<?>... aClass) {
+        this.aClass = aClass;
     }
+
     public String as(GraphType graph){
-        if (graph == GraphType.Mermaid){
-            return """
-            classDiagram
-            class Machin {
-                <<interface>>
+        String graphSentence = "classDiagram\n";;
+        for(Class myClass : aClass) {
+            if(graph==GraphType.Mermaid) {
+                graphSentence = graphSentence + "class " + myClass.getSimpleName();
+                if (myClass.isInterface()) {
+                    graphSentence = graphSentence + " {\n" + "    <<interface>>\n" + "}\n";
+                }
+                else {
+                    graphSentence = graphSentence + " {\n" + "    <<class>>\n" + "}\n";
+                }
             }
-            """;
         }
-        return  null;
+        return graphSentence;
     }
 }
