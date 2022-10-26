@@ -5,11 +5,10 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
 @Command
-class Launcher implements Runnable {
-
-    @Option(names = {"-c", "--classes"}, required = true ,description = "Class to analyse")
-    private final Class<?>[] aClass = null;
-    @Option(names = {"-g", "--graph-type"},description = "Graph type")
+public class Launcher implements Runnable {
+    @Option(names = {"-c", "--classes"}, required = true, description = "Class to analyse")
+    private final Class<?>[] aClass = {};
+    @Option(names = {"-g", "--graph-type"}, description = "Graph type")
     private final GraphType graphType = GraphType.Mermaid;
 
     @Override
